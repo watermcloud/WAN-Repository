@@ -7,6 +7,7 @@ from flasgger import Swagger, LazyString, LazyJSONEncoder, swag_from
 app = Flask(__name__)
 app.json_encoder = LazyJSONEncoder
 
+#Template Swagger
 swagger_template = {
     'info': {
         'title': LazyString(lambda: 'API Documentation for Data Processing and Modeling'),
@@ -30,7 +31,7 @@ swagger_config = {
 }
 swagger = Swagger(app, template=swagger_template, config=swagger_config)
 
-# Mengambil data abusive dan kamusalay
+# Load data abusive dan kamusalay
 df_abusive = pd.read_csv("abusive.csv")
 df_alay = pd.read_csv('new_kamusalay.csv', encoding='latin-1', names=['alay', 'normal'])
 
@@ -91,7 +92,7 @@ def text_processing_file():
     # Lakukan cleansing pada teks
     cleaned_texts = []
     for text in df['Tweet']:
-        cleaned_texts.append(text_cleansing(text))
+        cleaned_texts.append(text_cleansing(text)) # Memanggil fungsi text_cleansing
 
     df['cleaned_text'] = cleaned_texts
 
