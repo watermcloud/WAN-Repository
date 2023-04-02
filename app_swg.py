@@ -66,7 +66,20 @@ def text_cleansing(text):
 
     return text
 
+# endpoint landing page bisa ditambahin dengan keterangan judul aplikasi dan nama
+@swag_from("docs/landingpage.yml", methods=['GET'])
+@app.route('/', methods=['GET'])
+def hello_world():
+    json_response = {
+        'status_code': 200,
+        'description': "DSC 7 - JUDUL APLIKASI",
+        'data': "NAMA",
+    }
 
+    response_data = jsonify(json_response)
+    return response_data
+
+# endpoint kedua
 @swag_from("docs/text_processing.yml", methods=['POST'])
 @app.route('/text-processing', methods=['POST'])
 def text_processing():
@@ -80,6 +93,7 @@ def text_processing():
     response_data = jsonify(json_response)
     return response_data
 
+# endpoint kedua
 @swag_from("docs/text_processing_file.yml", methods=['POST'])
 @app.route('/text-processing-file', methods=['POST'])
 def text_processing_file():
@@ -96,7 +110,8 @@ def text_processing_file():
 
     df['cleaned_text'] = cleaned_texts
 
-    response_data = df.to_dict('records')
+    #taruh response dibawah
+    #response_data = df.to_dict('records')
 
     json_response = {
         'status_code': 200,
@@ -104,7 +119,40 @@ def text_processing_file():
         'data': response_data
     }
 
-    return jsonify(json_response)
+    response_data = jsonify(json_response)
+    return response_data
+
+# endpoint kedua testing
+"""Review: Coba pakai code dibawah ini tanpa pakai fungsi text_cleansing(text) di jalan"""
+"""code yang atas di commend, code yang bawah ini di uncommend buat test jalan apa enggaknya"""
+# @swag_from("docs/text_processing_file.yml", methods=['POST'])
+# @app.route('/text-processing-file', methods=['POST'])
+# def text_processing_file():
+
+#     # Upladed file
+#     file = request.files.getlist('file')[0]
+
+#     # Import file csv ke Pandas
+#     df = pd.read_csv(file, encoding='latin-1')
+
+#     # Ambil teks yang akan diproses dalam format list
+#     # texts = df.text.to_list()
+
+#     # Lakukan cleansing pada teks
+#     cleaned_text = []
+#     for text in df['Tweet']:
+#         cleaned_text.append(re.sub(r'[^a-zA-Z0-9]', ' ', text))
+
+#     df['cleaned_text'] = cleaned_text
+
+#     json_response = {
+#         'status_code': 200,
+#         'description': "Teks yang sudah diproses",
+#         'data': cleaned_text
+#     }
+
+#     response_data = jsonify(json_response)
+#     return response_data
 
 if __name__ == '__main__':
    app.run()
