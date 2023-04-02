@@ -1,7 +1,13 @@
 tags:
+<<<<<<< HEAD
   - name: API TEXT CLEANSING
 get:
   description: API YANG MAMPU MEMPROSES KATA KASAR DAN ALAY PADA KALIMAT
+=======
+  - name: KASIH JUDUL APLIKASI DISINI
+get:
+  description: KASIH JUDUL APLIKASI DISINI
+>>>>>>> d9965b4babb09203fad4c173d1b7ebd153746c84
   # parameters:
   #       - description: CEK MENYALA
 responses:

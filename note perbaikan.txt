@@ -1,2 +1,0 @@
-Kalau mau analisa, pakai jupyternotebook .ipynb
-kalau udah tahap pengembangan aplikasi (swagger) bisa pakai pyhton .py
